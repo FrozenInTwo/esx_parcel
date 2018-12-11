@@ -21,18 +21,18 @@ local missionReturnTruck = false
 local missionNum = 0
 local missionDelivery = false
 local isInService = false
-local PlayerData              = nil
-local GUI                     = {}
-GUI.Time                      = 0
+local PlayerData = nil
+local GUI = {}
+GUI.Time = 0
 local hasAlreadyEnteredMarker = false
-local lastZone                = nil
-local Blips                   = {}
+local lastZone = nil
+local Blips = {}
 
 local vehiclePlate = ""
 local vehiclePlateCurrent = ""
-local CurrentAction           = nil
-local CurrentActionMsg        = ''
-local CurrentActionData       = {}
+local CurrentAction = nil
+local CurrentActionMsg = ''
+local CurrentActionData = {}
 --------------------------------------------------------------------------------
 RegisterNetEvent('esx:playerLoaded')
 AddEventHandler('esx:playerLoaded', function(xPlayer)
@@ -107,7 +107,6 @@ function MenuVehicleSpawner()
 		table.insert(elements, {label = GetLabelText(GetDisplayNameFromVehicleModel(Config.Trucks[i])), value = Config.Trucks[i]})
 	end
 
-
 	ESX.UI.Menu.CloseAll()
 
 	ESX.UI.Menu.Open(
@@ -119,15 +118,10 @@ function MenuVehicleSpawner()
 		function(data, menu)
 			ESX.Game.SpawnVehicle(data.current.value, Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(vehicle)
 				platenum = math.random(10000, 99999)
-				SetVehicleNumberPlateText(vehicle, "WAL"..platenum)             
+				SetVehicleNumberPlateText(vehicle, "FDX GUY"..platenum)
                 missionDeliverySelect()
-				vehiclePlate = "WAL"..platenum
-				if data.current.value == 'phantom3' then
-					ESX.Game.SpawnVehicle("trailers2", Config.Zones.VehicleSpawnPoint.Pos, 270.0, function(trailer)
-					    AttachVehicleToTrailer(vehicle, trailer, 1.1)
-					end)
-				end				
-				TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)   
+				vehiclePlate = "FDX GUY"..platenum
+				TaskWarpPedIntoVehicle(GetPlayerPed(-1), vehicle, -1)
 			end)
 
 			menu.close()
@@ -429,7 +423,7 @@ function givePayWithoutTruck()
 	ped = GetPlayerPed(-1)
 	moneyWithdraws = Config.TruckPrice
 	
-	-- donne paye
+	-- give pay
 	local amount = deliveryTotalPay-moneyWithdraws
 	
 	if deliveryTotalPay == 0 then
