@@ -1,5 +1,3 @@
-USE 'essentialmode';
-
 INSERT INTO 'jobs' (name, label) VALUES
 ('FedEx', 'Parcel delivery');
 
